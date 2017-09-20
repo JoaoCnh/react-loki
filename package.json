@@ -26,7 +26,9 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "prop-types": "^15.5.10"
+  },
   "peerDependencies": {
     "react": "15.x"
   },

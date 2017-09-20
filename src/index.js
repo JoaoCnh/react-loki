@@ -25,25 +25,26 @@ class Loki extends Component {
         if (this.state.currentStep === this.props.steps.length) {
             return this.props.onFinish();
         }
-        
+
         this.setState({ currentStep: this.state.currentStep + 1 });
     }
 
     _renderSteps() {
         if (this.props.renderSteps) {
             return this.props.renderSteps({ 
-                currentStep: this.state.currentStep, 
-                steps: this.props.steps 
+                currentStep: this.state.currentStep,
             });
         }
 
-        return this.props.steps.map((step, index) => (
+        const steps = this.props.steps.map((step, index) => (
             <LokiStep 
                 key={index} 
                 currentStep={this.state.currentStep} 
                 totalSteps={this.props.steps.length} 
                 step={{...step, index: index + 1}} />
         ));
+
+        return <LokiStepContainer>{steps}</LokiStepContainer>;
     }
 
     _renderComponents() {
@@ -56,9 +57,7 @@ class Loki extends Component {
 
         return (
             <div className="Loki">
-                <LokiStepContainer>
-                    {this._renderSteps()}
-                </LokiStepContainer>
+                {this._renderSteps()}
                 {this._renderComponents()}
                 <div className="Loki-Actions">
                     <button type="button" onClick={this._back.bind(this)} disabled={cantBack}>
