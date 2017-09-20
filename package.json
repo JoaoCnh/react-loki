@@ -1,0 +1,40 @@
+{
+  "name": "react-loki",
+  "version": "1.0.0",
+  "description": "A React Wizard .... Pun intended",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
+  "repository": "git@github.com:JoaoCnh/react-loki.git",
+  "author": "<joao.cunha@wiremaze.com>",
+  "license": "MIT",
+  "keywords": [
+    "react-component",
+    "wizard",
+    "react-wizard"
+  ],
+  "scripts": {
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "15.x"
+  },
+  "devDependencies": {
+    "nwb": "^0.18.10",
+    "nwb-sass": "^0.8.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-icons": "^2.2.5"
+  }
+}
