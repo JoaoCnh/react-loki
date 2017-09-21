@@ -8,7 +8,6 @@ import './scss/index.scss';
 
 class Loki extends Component {
     static defaultProps = {
-        steps: [],
         backLabel: 'Back',
         nextLabel: 'Next',
         finishlabel: 'Finish',
@@ -35,6 +34,8 @@ class Loki extends Component {
     }
 
     _renderSteps() {
+        if (!this.props.steps) { return; }
+
         if (this.props.renderSteps) {
             return this.props.renderSteps({ 
                 currentStep: this.state.currentStep,
@@ -54,6 +55,8 @@ class Loki extends Component {
     }
 
     _renderComponents() {
+        if (!this.props.steps) { return; }
+
         if (this.props.renderComponents) {
             return this.props.renderComponents({
                 currentStep: this.state.currentStep,
@@ -80,12 +83,12 @@ class Loki extends Component {
     }
 
     _renderActions() {
+        // If we don't want the buttons we do not render them
+        if (!this.props.steps || this.props.noActions) { return; }
+
         // If we want custom actions we render them
         if (this.props.renderActions) { return this.props.renderActions(); }
-
-        // If we don't want the buttons we do not render them
-        if (this.props.noActions) { return; }
-
+        
         const cantBack = this.state.currentStep === 1;
         const isInFinalStep = this.state.currentStep === this.props.steps.length;
 
@@ -113,6 +116,7 @@ class Loki extends Component {
 }
 
 Loki.propTypes = {
+    steps: PropTypes.array.isRequired,
     onFinish: PropTypes.func.isRequired,
 };
 
