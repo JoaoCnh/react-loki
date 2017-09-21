@@ -7,6 +7,8 @@ import FaEnvelope from 'react-icons/lib/fa/envelope';
 import Loki from '../../../src';
 
 import UserForm from './UserForm';
+import PasswordForm from './PasswordForm';
+import NewsletterForm from './NewsletterForm';
 
 export default class ComplexDemo extends Component {
     state = {
@@ -19,6 +21,20 @@ export default class ComplexDemo extends Component {
         },
     }
 
+    _mergeValues(values) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                ...values
+            },
+        });
+    }
+
+    _finishWizard() {
+        const data = JSON.stringify(this.state.user);
+        alert(`This is your data ${data}`);
+    }
+
     render() {
         const complexSteps = [
             {
@@ -29,12 +45,12 @@ export default class ComplexDemo extends Component {
             {
                 label: 'Step 2',
                 icon: <FaLock />,
-                component: <h1>step 2</h1>,
+                component: <PasswordForm user={this.state.user} />,
             },
             {
                 label: 'Step 3',
                 icon: <FaEnvelope />,
-                component: <h1>step 3</h1>,
+                component: <NewsletterForm user={this.state.user} />,
             },
         ];
 
@@ -43,6 +59,9 @@ export default class ComplexDemo extends Component {
                 <h1>Complex Formik Demo</h1>
                 <Loki
                     steps={complexSteps}
+                    onNext={this._mergeValues.bind(this)}
+                    onBack={this._mergeValues.bind(this)}
+                    onFinish={this._finishWizard.bind(this)}
                     noActions />
             </div>
         );
