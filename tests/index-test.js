@@ -17,6 +17,7 @@ const simpleSteps = [
   },
 ];
 
+/*
 describe('Loki', () => {
   let node
 
@@ -33,7 +34,7 @@ describe('Loki', () => {
       expect(node.innerHTML).toContain('Welcome to React components')
     })
   })
-});
+});*/
 
 describe('LokiStep', () => {
   let node

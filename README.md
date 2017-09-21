@@ -1,2 +1,16 @@
-# loki
-A React Wizard...... pun intented
+[build-badge]: https://travis-ci.org/JoaoCnh/react-loki.svg?branch=master
+[build]: https://travis-ci.org/JoaoCnh/react-loki
+[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
+[npm]: https://www.npmjs.org/package/npm-package
+[coveralls-badge]: https://coveralls.io/repos/github/JoaoCnh/react-loki/badge.svg?branch=master
+[coveralls]: https://coveralls.io/github/user/repo
+
+# react-loki
+
+## A WIP
+
+[![Travis][build-badge]][build]
+[![npm package][npm-badge]][npm]
+[![Coveralls][coveralls-badge]][coveralls]
+
+### react-loki is a Wizard Component made with React.... and yes.... the pun is intended.
