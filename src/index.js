@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import LokiStep from './LokiStep';
 import LokiStepContainer from './LokiStepContainer';
@@ -15,20 +16,22 @@ class Loki extends Component {
 
     state = {
         currentStep: 1,
+        complete: false,
     }
 
-    _back() {
+    _back(data) {
+        this.props.onBack && this.props.onBack(data);
         this.setState({ currentStep: this.state.currentStep - 1 });
-        this.props.onBack && this.props.onBack();
     }
 
-    _next() {
+    _next(data) {
         if (this.state.currentStep === this.props.steps.length) {
-            return this.props.onFinish();
+            this.props.onFinish();
+            return this.setState({ complete: true });
         }
 
+        this.props.onNext && this.props.onNext(data);
         this.setState({ currentStep: this.state.currentStep + 1 });
-        this.props.onNext && this.props.onNext();
     }
 
     _renderSteps() {
@@ -43,7 +46,8 @@ class Loki extends Component {
                 key={index} 
                 currentStep={this.state.currentStep} 
                 totalSteps={this.props.steps.length} 
-                step={{...step, index: index + 1}} />
+                step={{...step, index: index + 1}}
+                isLokiComplete={this.state.complete} />
         ));
 
         return <LokiStepContainer>{steps}</LokiStepContainer>;
@@ -87,10 +91,10 @@ class Loki extends Component {
 
         return (
             <div className="Loki-Actions">
-                <button type="button" onClick={this._back.bind(this)} disabled={cantBack}>
+                <button type="button" onClick={this._back.bind(this)} disabled={cantBack || this.state.complete}>
                     {this.props.backLabel}
                 </button>
-                <button type="button" onClick={this._next.bind(this)}>
+                <button type="button" onClick={this._next.bind(this)} disabled={this.state.complete}>
                     {isInFinalStep ? this.props.finishlabel : this.props.nextLabel}
                 </button>
             </div>
@@ -107,6 +111,10 @@ class Loki extends Component {
         );
     }
 }
+
+Loki.propTypes = {
+    onFinish: PropTypes.func.isRequired,
+};
 
 export {
     Loki as default,
