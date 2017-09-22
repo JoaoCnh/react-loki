@@ -30,9 +30,32 @@ Add react-loki to your project
 yarn add react-loki
 ```
 
-You can also try out the [demo](https://joaocnh.github.io/react-loki)
+**Table of Contents**
 
-## How to use
+- [Usage](#usage)
+- [Demo](#demo)
+- [Importing Styles](#importing-styles)
+- [API](#api)
+    - [`<Loki />`](#loki-)
+        - [Loki props](#loki-props)
+            - [`steps: array`](#steps-array-required)
+            - [`onFinish: function`](#onfinish-function-required)
+            - [`backLabel: string|element`](#backlabel-stringelement)
+            - [`nextLabel: string|element`](#nextlabel-stringelement)
+            - [`finishlabel: string|element`](#finishlabel-stringelement)
+    - [`<LokiStepContainer />`](#lokistepcontainer-)
+    - [`<LokiStep />`](#lokistep-)
+        - [LokiStep props](#lokistep-props)
+            - [`currentStep: integer`](#currentstep-integer-required)
+            - [`totalSteps: integer`](#totalsteps-integer-required)
+            - [`step: object`](#step-object-required)
+            - [`isLokiComplete: boolean`](#islokicomplete-boolean-required)
+- [Customizing](#customizing)
+    - [`renderSteps: function`](#rendersteps-function-currentstep-)
+    - [`renderComponents: function`](#rendercomponents-function-currentstep-)
+    - [`renderActions: function`](#renderactions-function-currentstep-)
+
+## Usage
 
 ### First define your steps
 
@@ -68,14 +91,18 @@ class Demo extends React.Component {
 }
 ```
 
-# Importing styles
+## Demo
+
+You can also try out the [demo](https://joaocnh.github.io/react-loki)
+
+## Importing styles
 ```scss
 @import "node_modules/react-loki/umd/main.css";
 ```
 
 These will import the default loki styles.
 
-# API
+## API
 
 ### `<Loki />`
 
@@ -133,7 +160,7 @@ If a step is currently being rendered it will have the class `LokiStep-Active`.
 If a step has been complete then it will have the class `LokiStep-Complete`.
 By default a step already has the class `LokiStep`.
 
-## CUSTOMIZING
+## Customizing
 
 If you don't want the default progress step look of `<LokiStep />` you can always render your own components.
 The API for this is simple. You can pass any rendering function for steps, inner components and even the buttons.
