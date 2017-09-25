@@ -33,13 +33,22 @@ class Loki extends Component {
         this.setState({ currentStep: this.state.currentStep + 1 });
     }
 
+    _lokiData() {
+        return {
+            currentStep: this.state.currentStep,
+            stepIndex: this.state.currentStep - 1,
+            cantBack: this.state.currentStep === 1,
+            isInFinalStep: this.state.currentStep === this.props.steps.length,
+            backHandler: this._back.bind(this),
+            nextHandler: this._next.bind(this),
+        };
+    }
+
     _renderSteps() {
         if (!this.props.steps) { return; }
 
         if (this.props.renderSteps) {
-            return this.props.renderSteps({ 
-                currentStep: this.state.currentStep,
-            });
+            return this.props.renderSteps(this._lokiData());
         }
 
         const steps = this.props.steps.map((step, index) => (
@@ -58,14 +67,11 @@ class Loki extends Component {
         if (!this.props.steps) { return; }
 
         if (this.props.renderComponents) {
-            return this.props.renderComponents({
-                currentStep: this.state.currentStep,
-            });
+            return this.props.renderComponents(this._lokiData());
         }
 
-        const stepIndex = this.state.currentStep - 1;
-        const cantBack = this.state.currentStep === 1;
-        const isInFinalStep = this.state.currentStep === this.props.steps.length;
+        const { stepIndex, cantBack, isInFinalStep, backHandler, nextHandler } = this._lokiData();
+
         const component = this.props.steps[stepIndex].component;
 
         if (this.props.noActions) {
@@ -75,8 +81,8 @@ class Loki extends Component {
                 nextLabel: isInFinalStep ? this.props.finishlabel : this.props.nextLabel,
                 cantBack,
                 isInFinalStep,
-                onBack: this._back.bind(this),
-                onNext: this._next.bind(this),
+                onBack: backHandler,
+                onNext: nextHandler,
             });
         }
 
@@ -92,12 +98,7 @@ class Loki extends Component {
 
         // If we want custom actions we render them
         if (this.props.renderActions) { 
-            return this.props.renderActions({
-                cantBack,
-                isInFinalStep,
-                backHandler: this._back.bind(this),
-                nextHandler: this._next.bind(this),
-            }); 
+            return this.props.renderActions(this._lokiData()); 
         }
 
         return (

@@ -39,17 +39,17 @@ export default class ComplexDemo extends Component {
         const complexSteps = [
             {
                 label: 'Step 1',
-                icon: <FaUser />,
+                icon: <FaUser className="mt-3" />,
                 component: <UserForm user={this.state.user} />,
             },
             {
                 label: 'Step 2',
-                icon: <FaLock />,
+                icon: <FaLock className="mt-3" />,
                 component: <PasswordForm user={this.state.user} />,
             },
             {
                 label: 'Step 3',
-                icon: <FaEnvelope />,
+                icon: <FaEnvelope className="mt-3" />,
                 component: <NewsletterForm user={this.state.user} />,
             },
         ];

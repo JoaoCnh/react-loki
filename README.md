@@ -165,8 +165,10 @@ By default a step already has the class `LokiStep`.
 If you don't want the default progress step look of `<LokiStep />` you can always render your own components.
 The API for this is simple. You can pass any rendering function for steps, inner components and even the buttons.
 
-#### `renderSteps: function({ currentStep })`
-#### `renderComponents: function({ currentStep })`
-#### `renderActions: function({ currentStep })`
+#### `renderSteps: function({ currentStep, stepIndex, cantBack, isInFinalStep, backHandler, nextHandler })`
+#### `renderComponents: function({ currentStep, stepIndex, cantBack, isInFinalStep, backHandler, nextHandler })`
+#### `renderActions: function({ currentStep, stepIndex, cantBack, isInFinalStep, backHandler, nextHandler })`
 
-With these functions you can override the total rendering logic behind `<Loki />`. We expose the currentStep to you so you can work with it in your logic.
+With these functions you can override the total rendering logic behind `<Loki />`. 
+
+We expose the all that info about `<Loki />` so that you can have freedom in what you do
