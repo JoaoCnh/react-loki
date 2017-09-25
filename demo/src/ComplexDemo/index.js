@@ -56,7 +56,6 @@ export default class ComplexDemo extends Component {
 
         return (
             <div className="Demo">
-                <h1>Complex Formik Demo</h1>
                 <Loki
                     steps={complexSteps}
                     onNext={this._mergeValues.bind(this)}

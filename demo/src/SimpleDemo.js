@@ -20,7 +20,6 @@ const SimpleDemo = () => {
 
     return (
         <div className="Demo">
-            <h1>Simple Demo</h1>
             <Loki
                 steps={simpleSteps}
                 onFinish={_onFinish} />

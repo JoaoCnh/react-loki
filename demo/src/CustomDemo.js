@@ -53,7 +53,6 @@ const CustomDemo = () => {
 
     return (
         <div className="Demo">
-            <h1>Custom Demo</h1>
             <Loki
                 steps={customSteps}
                 renderSteps={_customRenderer}
