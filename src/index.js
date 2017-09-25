@@ -70,6 +70,7 @@ class Loki extends Component {
 
         if (this.props.noActions) {
             return React.cloneElement(component, {
+                isComplete: this.state.complete,
                 backLabel: this.props.backLabel,
                 nextLabel: isInFinalStep ? this.props.finishlabel : this.props.nextLabel,
                 cantBack,
@@ -86,11 +87,18 @@ class Loki extends Component {
         // If we don't want the buttons we do not render them
         if (!this.props.steps || this.props.noActions) { return; }
 
-        // If we want custom actions we render them
-        if (this.props.renderActions) { return this.props.renderActions(); }
-        
         const cantBack = this.state.currentStep === 1;
         const isInFinalStep = this.state.currentStep === this.props.steps.length;
+
+        // If we want custom actions we render them
+        if (this.props.renderActions) { 
+            return this.props.renderActions({
+                cantBack,
+                isInFinalStep,
+                backHandler: this._back.bind(this),
+                nextHandler: this._next.bind(this),
+            }); 
+        }
 
         return (
             <div className="Loki-Actions">

@@ -22,10 +22,12 @@ const NewsletterForm = (props) => {
     } = props;
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <input type="checkbox" name="receiveNewsletter" id="receiveNewsletter" onChange={onChange} />
-                <label htmlFor="receiveNewsletter">Register for newsletter</label>
+        <form onSubmit={handleSubmit} className="p-1">
+            <div className="form-check">
+                <label htmlFor="receiveNewsletter" className="form-check-label">
+                    <input type="checkbox" className="form-check-input" name="receiveNewsletter" id="receiveNewsletter" onChange={onChange} />
+                    Register for newsletter
+                </label>
                 {errors.receiveNewsletter && touched.receiveNewsletter && <span>{errors.receiveNewsletter}</span>}
             </div>
 
