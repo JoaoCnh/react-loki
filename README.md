@@ -3,7 +3,7 @@
 [npm-badge]: https://badge.fury.io/js/react-loki.svg
 [npm]: https://www.npmjs.org/package/react-loki
 [coveralls-badge]: https://coveralls.io/repos/github/JoaoCnh/react-loki/badge.svg?branch=master
-[coveralls]: https://coveralls.io/github/user/repo
+[coveralls]: https://coveralls.io/github/JoaoCnh/react-loki
 
 # react-loki
 
