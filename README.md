@@ -43,6 +43,7 @@ yarn add react-loki
             - [`backLabel: string|element`](#backlabel-stringelement)
             - [`nextLabel: string|element`](#nextlabel-stringelement)
             - [`finishlabel: string|element`](#finishlabel-stringelement)
+            - [`noActions: boolean`](#noactions-boolean)
     - [`<LokiStepContainer />`](#lokistepcontainer-)
     - [`<LokiStep />`](#lokistep-)
         - [LokiStep props](#lokistep-props)
@@ -133,6 +134,11 @@ By default the nextLabel is 'Next'. This prop will allow you to replace it with 
 ##### `finishLabel: string|element`
 
 By default the finishLabel is 'Finish'. This prop will allow you to replace it with a new string value or even a React Component.
+
+##### `noActions: boolean`
+
+By default this is `false` but you can turn it to true if you don't want the actions to be rendered. Let's say in a case where 
+you have the actions inside the custom componentRenderer (renderComponents).
 
 ### `<LokiStepContainer />`
 
