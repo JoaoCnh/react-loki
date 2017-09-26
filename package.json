@@ -31,15 +31,15 @@
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
-    "react": "15.x"
+    "react": "16.x"
   },
   "devDependencies": {
     "formik": "^0.9.0",
     "gh-pages": "^1.0.0",
     "nwb": "^0.18.10",
     "nwb-sass": "^0.8.1",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-icons": "^2.2.5",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
