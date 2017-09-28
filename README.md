@@ -5,14 +5,13 @@
 [coveralls-badge]: https://coveralls.io/repos/github/JoaoCnh/react-loki/badge.svg?branch=master
 [coveralls]: https://coveralls.io/github/JoaoCnh/react-loki
 
-# react-loki
-
-## react-loki is a Wizard Component made with React.... and yes.... the pun is intended.
-
+![react-loki](demo/public/react-loki-banner.jpg)
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 [![license](http://img.shields.io/npm/l/react-loki.svg)](./LICENSE)
+
+## react-loki is a Wizard Component made with React.... and yes.... the pun is intended.
 
 ## Overview
 
@@ -52,9 +51,9 @@ yarn add react-loki
             - [`step: object`](#step-object-required)
             - [`isLokiComplete: boolean`](#islokicomplete-boolean-required)
 - [Customizing](#customizing)
-    - [`renderSteps: function`](#rendersteps-function-currentstep-)
-    - [`renderComponents: function`](#rendercomponents-function-currentstep-)
-    - [`renderActions: function`](#renderactions-function-currentstep-)
+    - [`renderSteps: function`](#rendersteps-function)
+    - [`renderComponents: function`](#rendercomponents-function)
+    - [`renderActions: function`](#renderactions-function)
 
 ## Usage
 
@@ -171,10 +170,11 @@ By default a step already has the class `LokiStep`.
 If you don't want the default progress step look of `<LokiStep />` you can always render your own components.
 The API for this is simple. You can pass any rendering function for steps, inner components and even the buttons.
 
-#### `renderSteps: function({ currentStep, stepIndex, cantBack, isInFinalStep, backHandler, nextHandler })`
-#### `renderComponents: function({ currentStep, stepIndex, cantBack, isInFinalStep, backHandler, nextHandler })`
-#### `renderActions: function({ currentStep, stepIndex, cantBack, isInFinalStep, backHandler, nextHandler })`
+#### `renderSteps: function`
+#### `renderComponents: function`
+#### `renderActions: function`
+
+These functions receive as params `{ currentStep, stepIndex, cantBack, isInFinalStep, backHandler, nextHandler }`
 
 With these functions you can override the total rendering logic behind `<Loki />`. 
-
-We expose the all that info about `<Loki />` so that you can have freedom in what you do
+We expose the all that info about `<Loki />` so that you can have freedom in what you do.
