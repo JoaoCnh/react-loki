@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const LokiStep = ({
   currentStep,
-  renderStep,
+  stepsDone,
   totalSteps,
   step,
   isLokiComplete,
@@ -24,7 +24,7 @@ const LokiStep = ({
         onClick={event => {
           event.preventDefault();
 
-          if (isDisabled || renderStep === step.index) {
+          if (isDisabled) {
             return;
           }
 
