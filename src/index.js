@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import LokiStep from "./LokiStep";
 import LokiStepContainer from "./LokiStepContainer";
 
-import "./scss/index.scss";
-
 class Loki extends Component {
   static defaultProps = {
     backLabel: "Back",
