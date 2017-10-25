@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import LokiStep from "./LokiStep";
 import LokiStepContainer from "./LokiStepContainer";
 
+import "./scss/index.scss";
+
 class Loki extends Component {
   static defaultProps = {
     backLabel: "Back",
@@ -13,12 +15,15 @@ class Loki extends Component {
 
   state = {
     currentStep: 1,
+    renderStep: 1,
     complete: false
   };
 
   _back(data) {
+    const newStep = this.state.renderStep - 1;
+
     this.props.onBack && this.props.onBack(data);
-    this.setState({ currentStep: this.state.currentStep - 1 });
+    this.setState({ renderStep: newStep });
   }
 
   _next(data) {
@@ -27,16 +32,24 @@ class Loki extends Component {
       return this.setState({ complete: true });
     }
 
+    const newStep = this.state.renderStep + 1;
+
     this.props.onNext && this.props.onNext(data);
-    this.setState({ currentStep: this.state.currentStep + 1 });
+    this.setState({
+      currentStep: newStep,
+      renderStep: newStep
+    });
   }
 
   _lokiData() {
     return {
       currentStep: this.state.currentStep,
-      stepIndex: this.state.currentStep - 1,
-      cantBack: this.state.currentStep === 1,
-      isInFinalStep: this.state.currentStep === this.props.steps.length,
+      renderStep: this.state.renderStep,
+      stepIndex: this.state.renderStep - 1,
+      cantBack: this.state.currentStep && this.state.renderStep === 1,
+      isInFinalStep:
+        this.state.currentStep &&
+        this.state.renderStep === this.props.steps.length,
       backHandler: this._back.bind(this),
       nextHandler: this._next.bind(this)
     };
@@ -55,8 +68,10 @@ class Loki extends Component {
       <LokiStep
         key={index}
         currentStep={this.state.currentStep}
+        renderStep={this.state.renderStep}
         totalSteps={this.props.steps.length}
         step={{ ...step, index: index + 1 }}
+        goTo={newStep => this.setState({ renderStep: newStep })}
         isLokiComplete={this.state.complete}
       />
     ));
@@ -106,8 +121,10 @@ class Loki extends Component {
       return;
     }
 
-    const cantBack = this.state.currentStep === 1;
-    const isInFinalStep = this.state.currentStep === this.props.steps.length;
+    const cantBack = this.state.renderStep && this.state.currentStep === 1;
+    const isInFinalStep =
+      this.state.renderStep &&
+      this.state.currentStep === this.props.steps.length;
 
     // If we want custom actions we render them
     if (this.props.renderActions) {
