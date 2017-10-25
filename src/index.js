@@ -8,7 +8,7 @@ class Loki extends Component {
   static defaultProps = {
     backLabel: "Back",
     nextLabel: "Next",
-    finishlabel: "Finish"
+    finishLabel: "Finish"
   };
 
   state = {
@@ -88,7 +88,7 @@ class Loki extends Component {
         isComplete: this.state.complete,
         backLabel: this.props.backLabel,
         nextLabel: isInFinalStep
-          ? this.props.finishlabel
+          ? this.props.finishLabel
           : this.props.nextLabel,
         cantBack,
         isInFinalStep,
@@ -128,7 +128,7 @@ class Loki extends Component {
           onClick={this._next.bind(this)}
           disabled={this.state.complete}
         >
-          {isInFinalStep ? this.props.finishlabel : this.props.nextLabel}
+          {isInFinalStep ? this.props.finishLabel : this.props.nextLabel}
         </button>
       </div>
     );
