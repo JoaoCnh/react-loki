@@ -23,7 +23,7 @@ class Loki extends Component {
 
   _next(data) {
     if (this.state.currentStep === this.props.steps.length) {
-      this.props.onFinish();
+      this.props.onFinish(data);
       return this.setState({ complete: true });
     }
 
