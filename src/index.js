@@ -17,6 +17,10 @@ class Loki extends Component {
     complete: false
   };
 
+  _goto(newStep) {
+    this.setState({ currentStep: newStep });
+  }
+
   _back(data) {
     this.props.onBack && this.props.onBack(data);
     this.setState({ currentStep: this.state.currentStep - 1 });
@@ -42,7 +46,8 @@ class Loki extends Component {
       cantBack: this.state.currentStep === 1,
       isInFinalStep: this.state.currentStep === this.props.steps.length,
       backHandler: this._back.bind(this),
-      nextHandler: this._next.bind(this)
+      nextHandler: this._next.bind(this),
+      gotoHandler: this._goto.bind(this)
     };
   }
 
@@ -62,7 +67,7 @@ class Loki extends Component {
         currentStep={this.state.currentStep}
         totalSteps={this.props.steps.length}
         step={{ ...step, index: index + 1 }}
-        goTo={newStep => this.setState({ currentStep: newStep })}
+        goTo={this._goto.bind(this  )}
         isLokiComplete={this.state.complete}
       />
     ));
