@@ -5,17 +5,15 @@ import LokiStep from "./LokiStep";
 import LokiStepContainer from "./LokiStepContainer";
 
 class Loki extends Component {
-  static defaultProps = {
-    backLabel: "Back",
-    nextLabel: "Next",
-    finishLabel: "Finish"
-  };
-
   state = {
     currentStep: 1,
     stepsDone: [],
     complete: false
   };
+
+  _goto(newStep) {
+    this.setState({ currentStep: newStep });
+  }
 
   _back(data) {
     this.props.onBack && this.props.onBack(data);
@@ -42,7 +40,8 @@ class Loki extends Component {
       cantBack: this.state.currentStep === 1,
       isInFinalStep: this.state.currentStep === this.props.steps.length,
       backHandler: this._back.bind(this),
-      nextHandler: this._next.bind(this)
+      nextHandler: this._next.bind(this),
+      gotoHandler: this._goto.bind(this)
     };
   }
 
@@ -62,7 +61,7 @@ class Loki extends Component {
         currentStep={this.state.currentStep}
         totalSteps={this.props.steps.length}
         step={{ ...step, index: index + 1 }}
-        goTo={newStep => this.setState({ currentStep: newStep })}
+        goTo={this._goto.bind(this  )}
         isLokiComplete={this.state.complete}
       />
     ));
@@ -152,8 +151,31 @@ class Loki extends Component {
 }
 
 Loki.propTypes = {
+  backLabel: PropTypes.string,
+  finishLabel: PropTypes.string,
+  nextLabel: PropTypes.string,
+  noActions: PropTypes.bool,
+  onBack: PropTypes.func,
+  onFinish: PropTypes.func.isRequired,
+  onNext: PropTypes.func,
+  renderActions: PropTypes.func,
+  renderComponents: PropTypes.func,
+  renderSteps: PropTypes.func,
   steps: PropTypes.array.isRequired,
-  onFinish: PropTypes.func.isRequired
 };
+
+Loki.defaultProps = {
+  backLabel: "Back",
+  nextLabel: "Next",
+  finishLabel: "Finish",
+  onBack: null,
+  onNext: null,
+  noActions: false,
+  onBack: null,
+  onNext: null,
+  renderActions: null,
+  renderComponents: null,
+  renderSteps: null,
+}
 
 export { Loki as default, LokiStepContainer, LokiStep };
